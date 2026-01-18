@@ -274,5 +274,3 @@ Compress-Archive -Path C:\temp\* -DestinationPath C:\temp\evidence.zip
 > É o SOC.
 
 Windows contra Windows.  
-Sem malware.  
-LOLBins puros.
