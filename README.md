@@ -26,7 +26,7 @@ Resumo honesto:
 Se rodar isso fora de um lab → **não é pentest, é BO**.
 
 ---
-[Trilha sonora para acompanhar --> clique aqui:](https://www.youtube.com/watch?v=ProwCLCppgo&list=RDWgETDKFkDEE&index=9)
+[Trilha sonora para acompanhar --> clique aqui!](https://www.youtube.com/watch?v=ProwCLCppgo&list=RDWgETDKFkDEE&index=9)
 
 ---
 
