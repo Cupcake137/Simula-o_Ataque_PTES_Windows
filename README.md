@@ -8,7 +8,7 @@ Aqui o ataque acontece como no mundo real:
 **Windows atacando Windows usando LOLBins**.
 
 ---
-![Fluxo PTES – Simulação Gray Box e Assumed Breach](PTES_SIMULAÇÃO.png)
+![Fluxo PTES – Simulação Gray Box e Assumed Breach](docs/PTES_SIMULAÇÃO.png)
 ---
 ## Aviso crítico (2026)
 
