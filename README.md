@@ -281,7 +281,7 @@ reg save HKLM\SYSTEM C:\temp\system.hive
 ### Pivoting
 
 ```cmd
-netsh interface portproxy add v4tov4 listenport=8080 listenaddress=0.0.0.0 connectport=80 connectaddress=192.168.56.200
+netsh interface portproxy add v4tov4 listenport=8080 listenaddress=0.0.0.0 connectport=80 connectaddress=ip
 ```
 
 ---
