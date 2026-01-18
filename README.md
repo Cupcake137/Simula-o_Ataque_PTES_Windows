@@ -26,6 +26,9 @@ Resumo honesto:
 Se rodar isso fora de um lab → **não é pentest, é BO**.
 
 ---
+[Trilha sonora para acompanhar kkkkkk](https://www.youtube.com/watch?v=ProwCLCppgo&list=RDWgETDKFkDEE&index=9)
+
+---
 
 ## Fases PTES adaptadas para Windows nativo
 
