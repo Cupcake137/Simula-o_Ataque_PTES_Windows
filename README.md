@@ -44,7 +44,7 @@ Se rodar isso fora de um lab → **não é pentest, é BO**.
 
 - **Atacante:** Windows 11 (PC ou VM)
 - **Vítima:** Windows 10/11 (VM)
-- **IP da vítima:** `ip`
+- **IP testado:** `ip`
 - **Rede:** Interna (Host-Only ou NAT)
 - **Credenciais:** Usuário low-priv previamente obtido
 
